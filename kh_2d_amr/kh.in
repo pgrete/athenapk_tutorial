@@ -1,0 +1,69 @@
+# AthenaPK - a performance portable block structured AMR MHD code
+# Copyright (c) 2020, Athena Parthenon Collaboration. All rights reserved.
+# Licensed under the BSD 3-Clause License (the "LICENSE");
+
+<comment>
+problem = Kelvin-Helmholtz instability
+reference = Lecoanet et al., MNRAS 455, 4274-4288, 2016
+
+<job>
+problem_id = kh
+
+<problem/kh>
+iprob  = 5               # AMR test setup from Athena++ method paper
+vflow  = 1.0             # relative shear velocity of the interfaces
+a      = 0.01            # thickness of shearing layer
+drat   = 2               # density contrast/ratio
+amp    = 0.01            # amplitude of initial vy perturbation
+sigma  = 0.2             # thickness of perturbed layer
+
+
+<refinement>
+type                           = xyvelocity_gradient 
+threshold_xyvelocity_gradient  = 0.01
+
+<parthenon/mesh>
+refinement = adaptive
+numlevel = 3 # total number of levels
+nghost = 2
+
+nx1 = 128
+x1min = -0.5
+x1max = 0.5
+ix1_bc = periodic
+ox1_bc = periodic
+
+nx2 = 128
+x2min = -0.5
+x2max = 0.5
+ix2_bc = periodic
+ox2_bc = periodic
+
+nx3 = 1
+x3min = -0.5
+x3max = 0.5
+ix3_bc = periodic
+ox3_bc = periodic
+
+<parthenon/meshblock>
+nx1=16
+nx2=16
+nx3=1
+
+<parthenon/time>
+integrator = vl2
+cfl = 0.4
+tlim = 1.2
+nlim = -1
+ncycle_out_mesh = -1000 # write out mesh structure every 1000 cycles (and on changes)
+
+<hydro>
+eos = adiabatic
+riemann = hllc
+reconstruction = plm
+gamma = 1.4 # gamma = C_p/C_v
+
+<parthenon/output0>
+file_type = rst
+dt = 0.1
+
