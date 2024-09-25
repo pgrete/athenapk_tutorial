@@ -47,7 +47,9 @@ nx3=16
 integrator = vl2
 cfl = 0.3
 tlim = 1.0
-nlim = 100000
+nlim = 30
+perf_cycle_offset = 10
+
 
 <hydro>
 fluid = glmmhd
