@@ -62,7 +62,7 @@ gamma           = 1.0001         # gamma = C_p/C_v
 <problem/turbulence>
 rho0         = 1.0      # initial mean density
 p0           = 1.0      # initial mean pressure
-b0           = 0.01     # initial magnetic field (x-direction)
+b0           = 0.05     # initial magnetic field (x-direction)
 b_config     = 0        # 0 - net flux; 1 - no net flux uniform B; 2 - non net flux sin B; 4 - field loop
 kpeak        = 2.0      # characteristic wavenumber
 corr_time    = 1.0      # autocorrelation time of the OU forcing process
